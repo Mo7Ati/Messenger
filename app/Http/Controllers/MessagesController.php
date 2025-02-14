@@ -195,12 +195,12 @@ class MessagesController extends Controller
         DB::beginTransaction();
         try {
             DB::statement('
-                UPDATE RECIPIENTS
+                UPDATE recipients
                 inner join messages on messages.id = recipients.message_id
                 SET recipients.read_at = ?
                 where recipients.user_id = ?
                       and messages.conversation_id = ?
-                      and RECIPIENTS.read_at is null
+                      and recipients.read_at is null
             ', [now(), $user->id, $id]);
             DB::commit();
         } catch (\Exception $e) {
