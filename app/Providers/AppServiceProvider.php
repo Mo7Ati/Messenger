@@ -6,7 +6,6 @@ use App\Models\Participant;
 use Auth;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
