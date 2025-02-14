@@ -1,25 +1,90 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!doctype html>
+<html lang="en">
 
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
+    <head>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <meta charset="utf-8" />
+        <title>Reset Password | Chatvia - Responsive Bootstrap 5 Chat App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Responsive Bootstrap 5 Chat App" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+
+    </head>
+
+    <body>
+
+
+        <div class="account-pages my-5 pt-sm-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                        <div class="text-center mb-4">
+                            <a href="index.html" class="auth-logo mb-5 d-block">
+                                <img src="assets/images/logo-dark.png" alt="" height="30" class="logo logo-dark">
+                                <img src="assets/images/logo-light.png" alt="" height="30" class="logo logo-light">
+                            </a>
+
+                            <h4>Reset Password</h4>
+                            <p class="text-muted mb-4">Reset Password With Chatvia.</p>
+
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <div class="p-3">
+                                    <div class="alert alert-success text-center mb-4" role="alert">
+                                        Enter your Email and instructions will be sent to you!
+                                    </div>
+                                    <form action="{{route("password.email")}}" method="POST">
+                                        @csrf
+                                        <div class="mb-4">
+                                            <label class="form-label">Email</label>
+                                            <div class="input-group mb-3 bg-light-subtle rounded-3">
+                                                <span class="input-group-text text-muted" id="basic-addon5">
+                                                    <i class="ri-mail-line"></i>
+                                                </span>
+                                                <input type="email" name="email" class="form-control form-control-lg border-light bg-light-subtle" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="basic-addon5">
+                                            </div>
+                                        </div>
+
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary waves-effect waves-light" type="submit">Reset</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 text-center">
+                            <p>Remember It ? <a href="{{route('login')}}" class="fw-medium text-primary"> Signin </a> </p>
+                            <p>© <script>document.write(new Date().getFullYear())</script> Chatvia. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- end account-pages -->
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+
+        <script src="assets/js/app.js"></script>
+
+    </body>
+</html>

@@ -1,9 +1,9 @@
 <template>
-    <div class="">
+    <div>
         <h5 class="mb-3 px-3 font-size-16">Recent</h5>
         <div class="chat-message-list px-2" data-simplebar>
             <ul class="list-unstyled chat-list chat-user-list" id="chat-list">
-                <li v-for="chat in $root.chats" v-bind:key="chat.id">
+                <li v-for="chat in $root.chats" :key="chat.id"  :class="{active : ( $root.chat && chat.id === $root.chat.id ) }" v-endif>
                     <div v-if="chat.type == 'peer'">
                         <a @click.prevent="setMain(chat)" href="#" id="chat-nav">
                             <div class="d-flex">

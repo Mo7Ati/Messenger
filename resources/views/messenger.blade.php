@@ -15,7 +15,6 @@
     <link href="assets/libs/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
 
 
-
     <!-- owl.carousel css -->
     <link rel="stylesheet" href="assets/libs/owl.carousel/assets/owl.carousel.min.css">
 
@@ -130,8 +129,15 @@
                                 <a class="dropdown-item" href="#">Setting <i
                                         class="ri-settings-3-line float-end text-muted"></i></a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="auth-login.html">Log out <i
-                                        class="ri-logout-circle-r-line float-end text-muted"></i></a>
+                                <form id="logout-form" class="dropdown-item"  action="{{ route('logout') }}" method="POST"
+                                    >
+                                    @csrf
+                                   <div onclick="document.getElementById('logout-form').submit()">
+                                        log out
+                                        <i class="ri-logout-circle-r-line float-end text-muted"></i>
+                                   </div>
+
+                                </form>
                             </div>
                         </li>
                     </ul>
@@ -142,7 +148,6 @@
 
             <!-- start chat-leftsidebar -->
             <div class="chat-leftsidebar me-lg-1 ms-lg-0">
-
                 <div class="tab-content">
                     <!-- Start Profile tab-pane -->
                     <div class="tab-pane" id="pills-user" role="tabpanel" aria-labelledby="pills-user-tab">
@@ -168,11 +173,18 @@
 
                             <div class="text-center p-4 border-bottom">
                                 <div class="mb-4">
-                                    <img src="assets/images/users/avatar-1.jpg"
-                                        class="rounded-circle avatar-lg img-thumbnail" alt="">
+                                    @if (!Auth::user()->image_url)
+                                        <img src="assets/images/users/avatar-1.jpg"
+                                            class="rounded-circle avatar-lg img-thumbnail" alt="">
+                                    @else
+                                        <form id="">
+                                            <input type="file" name="image"
+                                                class="rounded-circle avatar-lg img-thumbnail">
+                                        </form>
+                                    @endif
                                 </div>
 
-                                <h5 class="font-size-16 mb-1 text-truncate">Patricia Smith</h5>
+                                <h5 class="font-size-16 mb-1 text-truncate">{{ Auth::user()->name }}</h5>
                                 <p class="text-muted text-truncate mb-1"><i
                                         class="ri-record-circle-fill font-size-10 text-success me-1 ms-0 d-inline-block"></i>
                                     Active</p>
@@ -182,9 +194,7 @@
                             <!-- Start user-profile-desc -->
                             <div class="p-4 user-profile-desc" data-simplebar>
                                 <div class="text-muted">
-                                    <p class="mb-4">If several languages coalesce, the grammar of the resulting
-                                        language
-                                        is more simple and regular than that of the individual.</p>
+                                    <p class="mb-4">You Can What Ever You Want .....</p>
                                 </div>
 
 
@@ -205,29 +215,29 @@
                                             <div class="accordion-body">
                                                 <div>
                                                     <p class="text-muted mb-1">Name</p>
-                                                    <h5 class="font-size-14">Patricia Smith</h5>
+                                                    <h5 class="font-size-14">{{ Auth::user()->name }}</h5>
                                                 </div>
 
                                                 <div class="mt-4">
                                                     <p class="text-muted mb-1">Email</p>
-                                                    <h5 class="font-size-14">adc@123.com</h5>
+                                                    <h5 class="font-size-14">{{ Auth::user()->email }}</h5>
                                                 </div>
 
                                                 <div class="mt-4">
                                                     <p class="text-muted mb-1">Time</p>
-                                                    <h5 class="font-size-14">11:40 AM</h5>
+                                                    <h5 class="font-size-14">{{ now() }}</h5>
                                                 </div>
 
                                                 <div class="mt-4">
                                                     <p class="text-muted mb-1">Location</p>
-                                                    <h5 class="font-size-14 mb-0">California, USA</h5>
+                                                    <h5 class="font-size-14 mb-0">Gaza, PS</h5>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- End About card -->
 
-                                    <div class="card accordion-item border">
+                                    {{-- <div class="card accordion-item border">
                                         <div class="accordion-header" id="attachfile2">
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#attachfile"
@@ -423,7 +433,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
+
                                     <!-- End Attached Files card -->
                                 </div>
                                 <!-- end profile-user-accordion -->
@@ -456,7 +467,7 @@
                             </div> <!-- .p-4 -->
 
                             <!-- Start user status -->
-                            <div class="px-4 pb-4" dir="ltr">
+                            {{-- <div class="px-4 pb-4" dir="ltr">
 
                                 <div class="owl-carousel owl-theme" id="user-status-carousel">
                                     <div class="item">
@@ -522,7 +533,7 @@
 
                                 </div>
                                 <!-- end user status carousel -->
-                            </div>
+                            </div> --}}
                             <!-- end user status -->
 
                             <!-- Start chat-message-list -->

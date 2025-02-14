@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [MessengerController::class, 'index'])
+    ->name('home')
     ->middleware('auth');
 
 Route::get('/dashboard', function () {
